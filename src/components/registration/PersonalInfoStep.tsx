@@ -11,64 +11,62 @@ interface PersonalInfoStepProps {
 }
 
 export const PersonalInfoStep = ({ form }: PersonalInfoStepProps) => {
-  const { FormField, FormItem, FormLabel, FormControl, FormMessage } = Form;
-
   return (
     <>
-      <FormField
+      <Form.FormField
         control={form.control}
         name="name"
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Full Name</FormLabel>
-            <FormControl>
+          <Form.FormItem>
+            <Form.FormLabel>Full Name</Form.FormLabel>
+            <Form.FormControl>
               <Input placeholder="Enter your full name" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
+            </Form.FormControl>
+            <Form.FormMessage />
+          </Form.FormItem>
         )}
       />
 
-      <FormField
+      <Form.FormField
         control={form.control}
         name="age"
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Age</FormLabel>
-            <FormControl>
+          <Form.FormItem>
+            <Form.FormLabel>Age</Form.FormLabel>
+            <Form.FormControl>
               <Input type="number" placeholder="Enter your age" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
+            </Form.FormControl>
+            <Form.FormMessage />
+          </Form.FormItem>
         )}
       />
 
-      <FormField
+      <Form.FormField
         control={form.control}
         name="phone"
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Phone Number</FormLabel>
-            <FormControl>
+          <Form.FormItem>
+            <Form.FormLabel>Phone Number</Form.FormLabel>
+            <Form.FormControl>
               <Input placeholder="10-digit mobile number" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
+            </Form.FormControl>
+            <Form.FormMessage />
+          </Form.FormItem>
         )}
       />
 
-      <FormField
+      <Form.FormField
         control={form.control}
         name="originState"
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>State of Origin</FormLabel>
+          <Form.FormItem>
+            <Form.FormLabel>State of Origin</Form.FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <FormControl>
+              <Form.FormControl>
                 <SelectTrigger>
                   <SelectValue placeholder="Select your state" />
                 </SelectTrigger>
-              </FormControl>
+              </Form.FormControl>
               <SelectContent>
                 {indianStates.map((state) => (
                   <SelectItem key={state} value={state}>
@@ -77,8 +75,8 @@ export const PersonalInfoStep = ({ form }: PersonalInfoStepProps) => {
                 ))}
               </SelectContent>
             </Select>
-            <FormMessage />
-          </FormItem>
+            <Form.FormMessage />
+          </Form.FormItem>
         )}
       />
     </>

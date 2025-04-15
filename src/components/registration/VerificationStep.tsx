@@ -23,7 +23,6 @@ export const VerificationStep = ({
   onOtpChange,
   onSendOtp,
 }: VerificationStepProps) => {
-  const FormLabel = Form.FormLabel;
   const values = form.getValues();
 
   return (
@@ -46,7 +45,7 @@ export const VerificationStep = ({
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <FormLabel>Phone Verification</FormLabel>
+          <Form.FormLabel>Phone Verification</Form.FormLabel>
           {!otpSent && (
             <Button
               type="button"

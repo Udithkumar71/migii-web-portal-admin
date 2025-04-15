@@ -13,22 +13,20 @@ interface PhotoAndSkillStepProps {
 }
 
 export const PhotoAndSkillStep = ({ form, photoUrl, onPhotoUpload }: PhotoAndSkillStepProps) => {
-  const { FormField, FormItem, FormLabel, FormControl, FormMessage } = Form;
-
   return (
     <>
-      <FormField
+      <Form.FormField
         control={form.control}
         name="skill"
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Primary Skill</FormLabel>
+          <Form.FormItem>
+            <Form.FormLabel>Primary Skill</Form.FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <FormControl>
+              <Form.FormControl>
                 <SelectTrigger>
                   <SelectValue placeholder="Select your skill" />
                 </SelectTrigger>
-              </FormControl>
+              </Form.FormControl>
               <SelectContent>
                 {skillOptions.map((skill) => (
                   <SelectItem key={skill} value={skill}>
@@ -37,27 +35,27 @@ export const PhotoAndSkillStep = ({ form, photoUrl, onPhotoUpload }: PhotoAndSki
                 ))}
               </SelectContent>
             </Select>
-            <FormMessage />
-          </FormItem>
+            <Form.FormMessage />
+          </Form.FormItem>
         )}
       />
 
-      <FormField
+      <Form.FormField
         control={form.control}
         name="aadhaar"
         render={({ field }) => (
-          <FormItem>
-            <FormLabel>Aadhaar Number (Optional)</FormLabel>
-            <FormControl>
+          <Form.FormItem>
+            <Form.FormLabel>Aadhaar Number (Optional)</Form.FormLabel>
+            <Form.FormControl>
               <Input placeholder="XXXX-XXXX-XXXX" {...field} />
-            </FormControl>
-            <FormMessage />
-          </FormItem>
+            </Form.FormControl>
+            <Form.FormMessage />
+          </Form.FormItem>
         )}
       />
 
       <div className="space-y-2">
-        <FormLabel>Your Photo</FormLabel>
+        <Form.FormLabel>Your Photo</Form.FormLabel>
         <div className="flex items-center space-x-4">
           <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden">
             {photoUrl ? (
