@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -88,7 +87,6 @@ const RegistrationForm = () => {
   const handlePhotoUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      // For demo purposes, we're just creating a local URL
       const url = URL.createObjectURL(file);
       setPhotoUrl(url);
     }
@@ -114,7 +112,6 @@ const RegistrationForm = () => {
   };
 
   const verifyOtp = () => {
-    // In a real app, we would verify with the backend
     if (otp === "123456") {
       return true;
     }
@@ -123,7 +120,24 @@ const RegistrationForm = () => {
   };
 
   const nextStep = () => {
+    const currentValues = form.getValues();
+    
+    if (step === 1) {
+      const { name, age, phone, originState } = currentValues;
+      if (!name || !age || !phone || !originState) {
+        toast.error("Please fill in all required fields");
+        return;
+      }
+    } else if (step === 2) {
+      const { skill } = currentValues;
+      if (!skill || !photoUrl) {
+        toast.error("Please select a skill and upload your photo");
+        return;
+      }
+    }
+    
     setStep(step + 1);
+    toast.success("Step completed successfully");
   };
 
   const prevStep = () => {
@@ -143,7 +157,6 @@ const RegistrationForm = () => {
     setIsSubmitting(true);
     try {
       if (step === 3) {
-        // Final submission
         const worker = await createWorker({
           name: values.name,
           age: parseInt(values.age),
@@ -155,10 +168,8 @@ const RegistrationForm = () => {
         });
 
         toast.success("Registration successful!");
-        // Navigate to success page or show success modal
         navigate(`/registration-success?id=${worker.uniqueId}`);
       } else {
-        // Go to next step
         nextStep();
       }
     } catch (error) {
@@ -172,7 +183,6 @@ const RegistrationForm = () => {
     <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md animate-scale-in">
       <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">Worker Registration</h2>
       
-      {/* Step indicator */}
       <div className="flex justify-between mb-8">
         {[1, 2, 3].map((s) => (
           <div
@@ -396,15 +406,15 @@ const RegistrationForm = () => {
             ) : (
               <div></div>
             )}
-            <Button type="submit" disabled={isSubmitting}>
-              {isSubmitting ? (
-                <Loader size="sm" />
-              ) : step === 3 ? (
-                "Complete Registration"
-              ) : (
-                "Continue"
-              )}
-            </Button>
+            {step < 3 ? (
+              <Button type="button" onClick={nextStep} disabled={isSubmitting}>
+                {isSubmitting ? <Loader size="sm" /> : "Continue"}
+              </Button>
+            ) : (
+              <Button type="submit" disabled={isSubmitting || !otpSent}>
+                {isSubmitting ? <Loader size="sm" /> : "Complete Registration"}
+              </Button>
+            )}
           </div>
         </form>
       </Form>
