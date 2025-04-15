@@ -1,5 +1,12 @@
 
-import { Form } from "@/components/ui/form";
+import React from "react";
+import { 
+  FormField, 
+  FormItem, 
+  FormLabel, 
+  FormControl, 
+  FormMessage 
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { skillOptions } from "@/constants/formOptions";
@@ -15,18 +22,18 @@ interface PhotoAndSkillStepProps {
 export const PhotoAndSkillStep = ({ form, photoUrl, onPhotoUpload }: PhotoAndSkillStepProps) => {
   return (
     <>
-      <Form.FormField
+      <FormField
         control={form.control}
         name="skill"
         render={({ field }) => (
-          <Form.FormItem>
-            <Form.FormLabel>Primary Skill</Form.FormLabel>
+          <FormItem>
+            <FormLabel>Primary Skill</FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <Form.FormControl>
+              <FormControl>
                 <SelectTrigger>
                   <SelectValue placeholder="Select your skill" />
                 </SelectTrigger>
-              </Form.FormControl>
+              </FormControl>
               <SelectContent>
                 {skillOptions.map((skill) => (
                   <SelectItem key={skill} value={skill}>
@@ -35,27 +42,27 @@ export const PhotoAndSkillStep = ({ form, photoUrl, onPhotoUpload }: PhotoAndSki
                 ))}
               </SelectContent>
             </Select>
-            <Form.FormMessage />
-          </Form.FormItem>
+            <FormMessage />
+          </FormItem>
         )}
       />
 
-      <Form.FormField
+      <FormField
         control={form.control}
         name="aadhaar"
         render={({ field }) => (
-          <Form.FormItem>
-            <Form.FormLabel>Aadhaar Number (Optional)</Form.FormLabel>
-            <Form.FormControl>
+          <FormItem>
+            <FormLabel>Aadhaar Number (Optional)</FormLabel>
+            <FormControl>
               <Input placeholder="XXXX-XXXX-XXXX" {...field} />
-            </Form.FormControl>
-            <Form.FormMessage />
-          </Form.FormItem>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         )}
       />
 
       <div className="space-y-2">
-        <Form.FormLabel>Your Photo</Form.FormLabel>
+        <FormLabel>Your Photo</FormLabel>
         <div className="flex items-center space-x-4">
           <div className="w-24 h-24 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center overflow-hidden">
             {photoUrl ? (

@@ -1,6 +1,7 @@
 
+import React from "react";
 import { Button } from "@/components/ui/button";
-import { Form } from "@/components/ui/form";
+import { FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Loader } from "@/components/Loader";
 import { type UseFormReturn } from "react-hook-form";
@@ -45,7 +46,7 @@ export const VerificationStep = ({
 
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <Form.FormLabel>Phone Verification</Form.FormLabel>
+          <FormLabel>Phone Verification</FormLabel>
           {!otpSent && (
             <Button
               type="button"

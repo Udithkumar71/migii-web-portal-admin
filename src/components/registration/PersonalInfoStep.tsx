@@ -1,5 +1,12 @@
 
-import { Form } from "@/components/ui/form";
+import React from "react";
+import { 
+  FormField, 
+  FormItem, 
+  FormLabel, 
+  FormControl, 
+  FormMessage 
+} from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { indianStates } from "@/constants/formOptions";
@@ -13,60 +20,60 @@ interface PersonalInfoStepProps {
 export const PersonalInfoStep = ({ form }: PersonalInfoStepProps) => {
   return (
     <>
-      <Form.FormField
+      <FormField
         control={form.control}
         name="name"
         render={({ field }) => (
-          <Form.FormItem>
-            <Form.FormLabel>Full Name</Form.FormLabel>
-            <Form.FormControl>
+          <FormItem>
+            <FormLabel>Full Name</FormLabel>
+            <FormControl>
               <Input placeholder="Enter your full name" {...field} />
-            </Form.FormControl>
-            <Form.FormMessage />
-          </Form.FormItem>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         )}
       />
 
-      <Form.FormField
+      <FormField
         control={form.control}
         name="age"
         render={({ field }) => (
-          <Form.FormItem>
-            <Form.FormLabel>Age</Form.FormLabel>
-            <Form.FormControl>
+          <FormItem>
+            <FormLabel>Age</FormLabel>
+            <FormControl>
               <Input type="number" placeholder="Enter your age" {...field} />
-            </Form.FormControl>
-            <Form.FormMessage />
-          </Form.FormItem>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         )}
       />
 
-      <Form.FormField
+      <FormField
         control={form.control}
         name="phone"
         render={({ field }) => (
-          <Form.FormItem>
-            <Form.FormLabel>Phone Number</Form.FormLabel>
-            <Form.FormControl>
+          <FormItem>
+            <FormLabel>Phone Number</FormLabel>
+            <FormControl>
               <Input placeholder="10-digit mobile number" {...field} />
-            </Form.FormControl>
-            <Form.FormMessage />
-          </Form.FormItem>
+            </FormControl>
+            <FormMessage />
+          </FormItem>
         )}
       />
 
-      <Form.FormField
+      <FormField
         control={form.control}
         name="originState"
         render={({ field }) => (
-          <Form.FormItem>
-            <Form.FormLabel>State of Origin</Form.FormLabel>
+          <FormItem>
+            <FormLabel>State of Origin</FormLabel>
             <Select onValueChange={field.onChange} defaultValue={field.value}>
-              <Form.FormControl>
+              <FormControl>
                 <SelectTrigger>
                   <SelectValue placeholder="Select your state" />
                 </SelectTrigger>
-              </Form.FormControl>
+              </FormControl>
               <SelectContent>
                 {indianStates.map((state) => (
                   <SelectItem key={state} value={state}>
@@ -75,8 +82,8 @@ export const PersonalInfoStep = ({ form }: PersonalInfoStepProps) => {
                 ))}
               </SelectContent>
             </Select>
-            <Form.FormMessage />
-          </Form.FormItem>
+            <FormMessage />
+          </FormItem>
         )}
       />
     </>
