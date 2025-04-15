@@ -21,10 +21,12 @@ import WorkerDashboardPage from "./pages/WorkerDashboard";
 import AdminLoginPage from "./pages/AdminLogin";
 import AdminDashboardPage from "./pages/AdminDashboard";
 import WorkerDetailsPage from "./pages/WorkerDetails";
+import RegistrationSuccess from "./pages/RegistrationSuccess";
 
 // Components
 import Layout from "./components/Layout";
 import AdminLayout from "./components/AdminLayout";
+import WorkerDashboardLayout from "./components/WorkerDashboardLayout";
 import { Loader } from "./components/Loader";
 
 const queryClient = new QueryClient();
@@ -38,6 +40,7 @@ const App = () => (
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
             <Route path="register" element={<RegisterPage />} />
+            <Route path="registration-success" element={<RegistrationSuccess />} />
             <Route path="worker-login" element={<WorkerLoginPage />} />
             <Route path="admin-login" element={<AdminLoginPage />} />
           </Route>
@@ -45,14 +48,13 @@ const App = () => (
           {/* Protected worker routes */}
           <Route
             path="/worker-dashboard"
-            element={
-              <SignedIn>
-                <Layout>
-                  <WorkerDashboardPage />
-                </Layout>
-              </SignedIn>
-            }
-          />
+            element={<WorkerDashboardLayout />}
+          >
+            <Route index element={<WorkerDashboardPage />} />
+            <Route path="profile" element={<div>Profile Page</div>} />
+            <Route path="settings" element={<div>Settings Page</div>} />
+            <Route path="help" element={<div>Help Page</div>} />
+          </Route>
           
           {/* Admin routes */}
           <Route path="/admin" element={<AdminLayout />}>

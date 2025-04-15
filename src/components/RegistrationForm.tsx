@@ -8,6 +8,7 @@ import { StepIndicator } from "./registration/StepIndicator";
 import { PersonalInfoStep } from "./registration/PersonalInfoStep";
 import { PhotoAndSkillStep } from "./registration/PhotoAndSkillStep";
 import { VerificationStep } from "./registration/VerificationStep";
+import { motion } from "framer-motion";
 
 const RegistrationForm = () => {
   const {
@@ -33,26 +34,33 @@ const RegistrationForm = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-          {step === 1 && <PersonalInfoStep form={form} />}
-          
-          {step === 2 && (
-            <PhotoAndSkillStep 
-              form={form} 
-              photoUrl={photoUrl} 
-              onPhotoUpload={handlePhotoUpload} 
-            />
-          )}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+          >
+            {step === 1 && <PersonalInfoStep form={form} />}
+            
+            {step === 2 && (
+              <PhotoAndSkillStep 
+                form={form} 
+                photoUrl={photoUrl} 
+                onPhotoUpload={handlePhotoUpload} 
+              />
+            )}
 
-          {step === 3 && (
-            <VerificationStep
-              form={form}
-              otp={otp}
-              otpSent={otpSent}
-              isSubmitting={isSubmitting}
-              onOtpChange={setOtp}
-              onSendOtp={handleSendOtp}
-            />
-          )}
+            {step === 3 && (
+              <VerificationStep
+                form={form}
+                otp={otp}
+                otpSent={otpSent}
+                isSubmitting={isSubmitting}
+                onOtpChange={setOtp}
+                onSendOtp={handleSendOtp}
+              />
+            )}
+          </motion.div>
 
           <div className="flex justify-between mt-8">
             {step > 1 ? (
